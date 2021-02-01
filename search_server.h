@@ -1,6 +1,8 @@
 #pragma once
 
 #include "document.h"
+//Используйте директивы только там где это нужно. В вашем случае функция используется только в cpp файле.
+//Не нужно засорять интерфейс
 #include "string_processing.h"
 
 #include <string>
@@ -39,7 +41,8 @@ public:
 	std::vector<Document> FindTopDocuments(const std::string& raw_query, DocumentStatus GetStatus) const;
 
 	std::vector<Document> FindTopDocuments(const std::string& raw_query) const;
-
+	
+	//Опреление шаблонного метода нужно делать после объявления класса. В самом классе оставьте только объявление метода.
 	template<typename Predicate>
 	std::vector<Document> FindTopDocuments(const std::string& raw_query, Predicate predicate) const {
 		IsValidWord(raw_query);
@@ -98,12 +101,14 @@ private:
 
 	double ComputeWordInverseDocumentFreq(const std::string& word) const;
 
+	//Статические методы располагайте перед статическими. Статические методы ведут себя по другому, могут отлдичаться порядком инициализации и используются без экземпляра класса
 	static int ComputeAverageRating(const std::vector<int>& ratings);
 
 	static void IsValidWord(const std::string& word);
 
 	static void AreStopWordsValid(const Query& query);
 
+	//Опреление шаблонного метода нужно делать после объявления класса. В самом классе оставьте только объявление метода.
 	template<typename Predicate>
 	std::vector<Document> FindAllDocuments(const Query& query, Predicate predicate) const {
 		std::map<int, double> document_to_relevance;

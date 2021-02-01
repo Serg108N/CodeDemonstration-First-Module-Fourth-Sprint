@@ -26,9 +26,8 @@ public:
 		}
 	}
 
-	auto begin() const {
-		return pages_.begin();
-	}
+	//Функции в одну строку в хэдере лучше записывать в одну строку
+	auto begin() const { return pages_.begin(); }
 
 	auto end() const {
 		return pages_.end();

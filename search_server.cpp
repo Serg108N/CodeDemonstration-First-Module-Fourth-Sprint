@@ -30,6 +30,7 @@ void SearchServer::AddDocument(int document_id, const string& document, Document
 	documents_vector_.push_back(document_id);
 }
 
+//Реализацию методов в одну строку лучше располагть в h (хэдер) файлах, т.к. они будут встраиваемыми
 int SearchServer::GetDocumentCount() const {
 	return documents_.size();
 }
@@ -62,17 +63,18 @@ tuple<vector<string>, DocumentStatus> SearchServer::MatchDocument(const string& 
 
 	return {matched_words, documents_.at(document_id).status};
 }
-
+//Реализацию методов в одну строку лучше располагть в h (хэдер) файлах, т.к. они будут встраиваемыми
 int SearchServer::GetDocumentId(int index) const {
 	return documents_vector_.at(index);
 }
 
+//Вот эту функцию я бы не пермещал, по тому, что встриваемую функцию невозможно дебажить
 vector<Document> SearchServer::FindTopDocuments(const string& raw_query, DocumentStatus GetStatus) const {
 	return FindTopDocuments(raw_query, [GetStatus](int document_id, DocumentStatus status, int rating) {
 		return status == GetStatus;
 	});
 }
-
+//Вот эту функцию я бы не пермещал, по тому, что встриваемую функцию невозможно дебажить
 vector<Document> SearchServer::FindTopDocuments(const string& raw_query) const {
 	return FindTopDocuments(raw_query, DocumentStatus::ACTUAL);
 }
@@ -89,6 +91,7 @@ vector<string> SearchServer::SplitIntoWordsNoStop(const string& text) const {
 	return words;
 }
 
+//Реализацию методов в одну строку лучше располагть в h (хэдер) файлах, т.к. они будут встраиваемыми
 bool SearchServer::IsStopWord(const string& word) const {
 	return stop_words_.count(word) > 0;
 }
@@ -127,6 +130,8 @@ SearchServer::Query SearchServer::ParseQuery(const string& text) const {
 	return query;
 }
 
+//Реализацию методов в одну строку лучше располагть в h (хэдер) файлах, т.к. они будут встраиваемыми
+//Тут вот можно подуматьт, пермещать в хэдер или нет
 double SearchServer::ComputeWordInverseDocumentFreq(const string& word) const {
 	return log(GetDocumentCount() * 1.0 / word_to_document_freqs_.at(word).size());
 }

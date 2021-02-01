@@ -2,6 +2,8 @@
 
 using namespace std;
 
+//Я бы вообще все перенс в хэдер. Можете контр аргументировать.
+//Реализацию методов в одну строку лучше располагть в h (хэдер) файлах, т.к. они будут встраиваемыми
 RequestQueue::RequestQueue(const SearchServer& search_server) :
 		number_of_noresult_requests(0), current_time_(0), server_(search_server) {
 }

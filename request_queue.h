@@ -13,6 +13,7 @@ public:
 
 	explicit RequestQueue(const SearchServer& search_server);
 
+	//ќпреление шаблонного метода нужно делать после объ¤влени¤ класса. ¬ самом классе оставьте только объ¤вление метода.
 	template<typename DocumentPredicate>
 	std::vector<Document> AddFindRequest(const std::string& raw_query, DocumentPredicate document_predicate) {
 		++current_time_;
@@ -52,6 +53,7 @@ private:
 
 	int number_of_noresult_requests;
 	int current_time_;
+	//—татическую переменную отдельно от нестатических
 	const static int sec_in_day_ = 1440;
 	std::deque<QueryResult> requests_;
 	const SearchServer& server_;
