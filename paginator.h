@@ -26,12 +26,9 @@ public:
 		}
 	}
 
-	//Функции в одну строку в хэдере лучше записывать в одну строку
 	auto begin() const { return pages_.begin(); }
 
-	auto end() const {
-		return pages_.end();
-	}
+	auto end() const { return pages_.end();	}
 
 private:
 
@@ -41,6 +38,4 @@ private:
 };
 
 template<typename Container>
-auto Paginate(const Container& c, std::size_t page_size) {
-	return Paginator(begin(c), end(c), page_size);
-}
+auto Paginate(const Container& c, std::size_t page_size) { return Paginator(begin(c), end(c), page_size); }
