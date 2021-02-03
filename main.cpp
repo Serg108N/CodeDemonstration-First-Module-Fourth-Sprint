@@ -5,8 +5,6 @@
 #include <string>
 #include <iostream>
 
-//Зачет. Посмотрите замечание в классе paginator.
-
 using namespace std;
 
 void PrintDocument(const Document& document) {
