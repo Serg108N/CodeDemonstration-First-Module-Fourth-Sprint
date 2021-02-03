@@ -26,6 +26,7 @@ public:
 		}
 	}
 
+	//Я бы рекомендовал не сужать интерфейс изначально предоставляемый методом begin при перекрытии и сделать функции так же noexcept как и в вызываемой.
 	auto begin() const { return pages_.begin(); }
 
 	auto end() const { return pages_.end();	}
